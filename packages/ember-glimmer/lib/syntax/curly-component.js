@@ -1,5 +1,5 @@
 import { StatementSyntax, ValueReference } from 'glimmer-runtime';
-import { AttributeBindingReference, RootReference, applyClassNameBinding } from '../utils/references';
+import { TO_ROOT_REFERENCE, AttributeBindingReference, applyClassNameBinding } from '../utils/references';
 import { DIRTY_TAG, IS_DISPATCHING_ATTRS, HAS_BLOCK } from '../component';
 import { assert } from 'ember-metal/debug';
 import processArgs from '../utils/process-args';
@@ -150,7 +150,7 @@ class CurlyComponentManager {
   }
 
   getSelf({ component }) {
-    return new RootReference(component);
+    return component[TO_ROOT_REFERENCE]();
   }
 
   didCreateElement({ component, classRef }, element, operations) {
